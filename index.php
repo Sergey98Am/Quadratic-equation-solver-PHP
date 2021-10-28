@@ -31,6 +31,7 @@
 </style>
 
 <?php
+
 if (isset($_POST['submit'])) {
     function findRoots($a, $b, $c)
     {
@@ -38,18 +39,31 @@ if (isset($_POST['submit'])) {
             echo "Invalid";
             return;
         }
-        $x = '';
 
         $disc = ($b * $b) - (4 * $a * $c);
         if ($disc == 0) {
             $x = (-$b + sqrt($disc)) / (2 * $a);
-            echo ("The equation has one real roots, x = $x");
+            $text_result = "The equation has one real roots, x = $x";
         } elseif ($disc > 0) {
             $x1 = (-$b + sqrt($disc)) / (2 * $a);
             $x2 = (-$b - sqrt($disc)) / (2 * $a);
-            echo ("The equation has two real roots, x1 = $x1, x2 = $x2");
+            $text_result = "The equation has two real roots, x1 = $x1, x2 = $x2";
         } elseif ($disc < 0) {
-            echo ("The equation has no real roots, because x = $disc");
+            $text_result = "The equation has no real roots, because x = $disc";
+        }
+
+        cache($a, $b, $c, $text_result);
+    }
+
+    function cache($a, $b, $c, $text_result)
+    {
+        $file_name = "$a+$b+$c.php";
+        $cache_file = "cache/$file_name";
+        if (file_exists($cache_file)) {
+            echo file_get_contents($cache_file);
+        } else {
+            file_put_contents($cache_file, $text_result);
+            echo file_get_contents($cache_file);
         }
     }
 
