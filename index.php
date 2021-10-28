@@ -41,30 +41,16 @@ if (isset($_POST['submit'])) {
         $x = '';
 
         $disc = ($b * $b) - (4 * $a * $c);
-        echo (-$b + sqrt($disc)) / (2 * $a);
         if ($disc == 0) {
             $x = (-$b + sqrt($disc)) / (2 * $a);
-            echo ('The equation has one real roots, x = ' . $x);
+            echo ("The equation has one real roots, x = $x");
         } elseif ($disc > 0) {
             $x1 = (-$b + sqrt($disc)) / (2 * $a);
             $x2 = (-$b - sqrt($disc)) / (2 * $a);
-            echo ('The equation has two real roots, x1 = ' . $x1 . ', x2 = ' . $x2);
+            echo ("The equation has two real roots, x1 = $x1, x2 = $x2");
         } elseif ($disc < 0) {
-            echo ('The equation has no real roots, because x = ' . $disc);
+            echo ("The equation has no real roots, because x = $disc");
         }
-
-//        if ($discriminant > 0) {
-//            echo "Roots are real and different ";
-//            echo ($b + $sqrt_val) / (2 * $a), ", ",
-//                ($b - $sqrt_val) / (2 * $a);
-//        } else if ($discriminant == 0) {
-//            echo "Roots are real and same ";
-//            echo $b / (2 * $a);
-//        }
-//        // $discriminant < 0
-//        else {
-//            echo "Has no solution";
-//        }
     }
 
     $a = $_POST['a'];
